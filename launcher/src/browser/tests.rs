@@ -1,4 +1,5 @@
-use super::*;
+use crate::browser::*;
+use crate::browser::{curseforge, download, modrinth};
 use serde_json::json;
 use sha2::Digest;
 

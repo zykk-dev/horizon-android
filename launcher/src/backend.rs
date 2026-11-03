@@ -4958,6 +4958,7 @@ pub fn {f}("
         // Another update swaps the file under the running launcher.
         fs::write(dir.join("other"), "other update").unwrap();
         fs::rename(dir.join("other"), &exe).unwrap();
+        fs::set_permissions(&exe, fs::Permissions::from_mode(0o644)).unwrap();
         fs::write(dir.join("new"), "new").unwrap();
         replace_binary(&dir.join("new"), &exe).unwrap();
         assert_eq!(fs::read_to_string(&exe).unwrap(), "new");

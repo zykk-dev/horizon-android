@@ -1569,8 +1569,8 @@ pub fn launch(
             pass.offline = said;
         }
         let after = serde_json::to_string(&secrets).ok();
-        if after != before
-            && let Some(text) = after
+        if after != before {
+            if let Some(text) = after {
         {
             // The game still starts; the player hears why the next launch may ask again.
             if let Err(e) = store.set(&account.uuid, &text) {
@@ -1586,7 +1586,10 @@ pub fn launch(
             }
         }
     }
-    if owned { Ok(pass) } else { Err(NoOwner) }
+                }
+        }
+
+        if owned { Ok(pass) } else { Err(NoOwner) }
 }
 
 /// The owner gate before the game starts. With the window's hidden developer option
